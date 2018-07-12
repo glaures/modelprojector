@@ -97,3 +97,16 @@ To convert a ``Person`` p into a ``PersonDto`` you simply call ``project(p, Pers
 
 As you might have noticed there is no annotation required if the property names of the source object map those of the projection. In case the projected object is using different names (but the same type) you can specify the name of the source object's property within your projection class (see property ``email`` in the above example).
 
+And there is much more to discover:
+* map nested objects onto their projection classes
+* map nested objects onto their ID property
+* map lists of nested objects onto a list of references or projection classes
+
+All of that is explained in detail in the Developer's guide below.
+
+## Installation
+
+Either checkout the repository and build it yourself, download it from here or use the Maven component in your pom.xml like this:
+...
+
+# Developer's guide

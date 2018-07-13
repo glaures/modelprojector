@@ -13,22 +13,35 @@
  * limitations under the License.
  */
 
-package de.sandkastenliga.tools.projector.core;
+package de.sandkastenliga.dtomapper.test;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+public class RealEstate {
 
-/**
- * Flag to avoid a property on the target object to be projected from the source object.
- * This allows to have independent properties on the target obejct that will be maintained
- * outside of the ModelProjector framework.
- * @author Guido Laures
- */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface NoProjection {
+    private String name;
+    private Address address;
+    private Person owner;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
 }

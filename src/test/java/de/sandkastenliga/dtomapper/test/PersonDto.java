@@ -3,6 +3,7 @@ package de.sandkastenliga.dtomapper.test;
 import de.sandkastenliga.tools.projector.core.ProjectionType;
 import de.sandkastenliga.tools.projector.core.Projection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDto {
@@ -12,7 +13,8 @@ public class PersonDto {
     private String name;
     private AddressDto address;
     private long husbandOrWifeId;
-    private List<Long> childrenIds;
+    private List<Long> childrenIds = new ArrayList<Long>();
+    private List<RealEstateDto> homes = new ArrayList<RealEstateDto>();
 
     public String getName() {
         return name;
@@ -52,7 +54,7 @@ public class PersonDto {
         return husbandOrWifeId;
     }
 
-    @Projection(value = ProjectionType.reference, propertyName = "marriedTo")
+    @Projection(value = ProjectionType.property, propertyName = "marriedTo")
     public void setHusbandOrWifeId(long husbandOrWifeId) {
         this.husbandOrWifeId = husbandOrWifeId;
     }
@@ -61,8 +63,17 @@ public class PersonDto {
         return childrenIds;
     }
 
-    @Projection(value = ProjectionType.referenceList)
+    @Projection(value = ProjectionType.propertyCollection, propertyName = "children")
     public void setChildrenIds(List<Long> childrenIds) {
         this.childrenIds = childrenIds;
+    }
+
+    public List<RealEstateDto> getHomes() {
+        return homes;
+    }
+
+    @Projection(ProjectionType.projectionCollection)
+    public void setHomes(List<RealEstateDto> homes) {
+        this.homes = homes;
     }
 }

@@ -1,5 +1,6 @@
 package de.sandkastenliga.dtomapper.test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class Person {
     private Date dateCreated;
     private Address address;
     private Person marriedTo;
-    private List<Person> children;
+    private List<Person> children = new ArrayList<Person>();
+    private List<RealEstate> homes = new ArrayList<RealEstate>();
 
     public Long getId() {
         return id;
@@ -76,5 +78,13 @@ public class Person {
 
     public void setChildren(List<Person> children) {
         this.children = children;
+    }
+
+    public List<RealEstate> getHomes() {
+        return homes;
+    }
+
+    public void setHomes(List<RealEstate> homes) {
+        this.homes = homes;
     }
 }

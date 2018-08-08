@@ -47,12 +47,12 @@ public @interface Projection {
     String propertyName() default "";
 
     /**
-     * This property is only required if you use ProjectionType.reference or ProjectionType.referenceList.
-     * It tells the Projector the name of the property on the source object's property value to be used as reference value.
+     * This property is only required if you use ProjectionType.property or ProjectionType.propertyCollection.
+     * It tells the Projector the name of the property on the source object's property value to be used as value.
      * Note: you need to make sure that the property of the target object has the same or wrappable type as the
-     * the source object's property id.
-     * Default value for this property is "id".
-     * @return the name of the id property of the source object's property to be used as reference
+     * the source object's property's property.
+     * Default value for this annotation parameter is "id".
+     * @return the name of the property of the source object's property to be used as value for the annotated setter method
      */
     String referencePropertyName() default "id";
 }

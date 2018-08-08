@@ -35,11 +35,12 @@ public class Projector {
     /**
      * This method returns the projection of a source object according to the rules specified on the
      * projectionClass' annotations.
-     * @see Projection
-     * @see ProjectionType
-     * @param source The source object which should be projected onto a different target object class
+     *
+     * @param source          The source object which should be projected onto a different target object class
      * @param projectionClass The class to be used for the projection
      * @return the projected version of source object
+     * @see Projection
+     * @see ProjectionType
      */
     public <T> T project(final Object source, final Class<T> projectionClass) {
         try {
@@ -57,6 +58,9 @@ public class Projector {
                         // if no explicit name given, we assume the same name on the source object
                         String sourcePropertyName = (projectionAnnotation.propertyName().equals("")) ? propertyProjectedOntoDescriptor.getName() : projectionAnnotation.propertyName();
                         switch (projectionAnnotation.value()) {
+                            case none:
+                                // do nothing
+                                break;
                             case property:
                                 // find the ID of the source class
                                 Object referencedObject = PropertyUtils.getProperty(source, sourcePropertyName);
@@ -74,11 +78,11 @@ public class Projector {
                                 break;
                             case propertyCollection:
                                 // get the target object colleciton and check if it is initialized
-                                Collection targetCollection = (Collection)PropertyUtils.getProperty(result, propertyProjectedOntoDescriptor.getName());
+                                Collection targetCollection = (Collection) PropertyUtils.getProperty(result, propertyProjectedOntoDescriptor.getName());
                                 // get the source object collection
-                                Collection sourceCollection = (Collection)PropertyUtils.getProperty(source, sourcePropertyName);
+                                Collection sourceCollection = (Collection) PropertyUtils.getProperty(source, sourcePropertyName);
                                 // go through source object collection members and add reference to target object list
-                                if(sourceCollection != null) {
+                                if (sourceCollection != null) {
                                     for (Object sourceCollectionEntry : sourceCollection) {
                                         Object sourceObjectId = PropertyUtils.getProperty(sourceCollectionEntry, projectionAnnotation.referencePropertyName());
                                         targetCollection.add(sourceObjectId);
@@ -87,11 +91,11 @@ public class Projector {
                                 break;
                             case projectionCollection:
                                 // get the target object colleciton and check if it is initialized
-                                targetCollection = (Collection)PropertyUtils.getProperty(result, propertyProjectedOntoDescriptor.getName());
+                                targetCollection = (Collection) PropertyUtils.getProperty(result, propertyProjectedOntoDescriptor.getName());
                                 // get the source object collection
-                                sourceCollection = (Collection)PropertyUtils.getProperty(source, sourcePropertyName);
+                                sourceCollection = (Collection) PropertyUtils.getProperty(source, sourcePropertyName);
                                 // go through source object collection members and add reference to target object list
-                                if(sourceCollection != null) {
+                                if (sourceCollection != null) {
                                     final Type[] types = projectMethod.getGenericParameterTypes();
                                     // assuming that the first parameter to the method is of type List<Integer>
                                     final ParameterizedType pType = (ParameterizedType) types[0];
@@ -112,5 +116,4 @@ public class Projector {
             throw new RuntimeException(t);
         }
     }
-
 }

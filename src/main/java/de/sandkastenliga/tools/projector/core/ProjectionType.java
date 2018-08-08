@@ -9,6 +9,10 @@ package de.sandkastenliga.tools.projector.core;
 public enum ProjectionType {
 
     /**
+     * Ignore this property in tthe projection even if there is a property on the source object with the same name.
+     */
+    none,
+    /**
      * Project this property as is from the source object onto the target object.
      * This is the default behavior and can be omitted if source and target property share the
      * same name.

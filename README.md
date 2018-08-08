@@ -351,5 +351,4 @@ private Projector projector;
 
 If you want to project a list of objects in one go in Java 8+ you can make use of the map-collect-pattern like this:
         
-`sourceObjectList.stream().map(o -> projector.project(o, TargetClass.class)).collect(Collectors.toList());
-``
+`sourceObjectList.stream().map(o -> projector.project(o, TargetClass.class)).collect(Collectors.toList());`
